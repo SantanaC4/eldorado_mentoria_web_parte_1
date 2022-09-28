@@ -4,8 +4,12 @@ alert("Hello from Webpack")
 const meuCabecalho = document.getElementById('initial-text');
 meuCabecalho.textContent = 'Github Profile Search';
 
-const meuBotao = document.querySelector('button');
-meuBotao.addEventListener("click", getUser);
+const myButton = document.querySelector('button');
+const gitUser = document.querySelector('input')
 
-var myImage = document.querySelector('img');
-//test comment 
+myButton.addEventListener("click", getUser(gitUser.value));
+
+let myImage = document.querySelector('img');
+
+
+//test comment

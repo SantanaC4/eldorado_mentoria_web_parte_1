@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = void 0;
 var put_repo_1 = require("./put-repo");
 function getUser(gitUser) {
@@ -25,7 +25,8 @@ function getUser(gitUser) {
         .then(function (data) {
         console.log(data);
         document.getElementById('rep').innerHTML = (0, put_repo_1.putRepo)(data); // Display repositories list
-    })["catch"](function (error) {
+    })
+        .catch(function (error) {
         console.log(error);
     });
 }
