@@ -2,12 +2,13 @@ import React from "react";
 import { useRef } from "react"
 
 const GetGithubUser = () => {
-    const todoTextInputRef = useRef<HTMLInputElement>(null);
+    const userTextInputRef = useRef<HTMLInputElement>(null);
 
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
 
-        const enteredText = todoTextInputRef.current!.value;
+        // !,?: operators to treat null values
+        const enteredText = userTextInputRef.current!.value;
 
         if (enteredText.trim().length === 0) {
             // throw an error
@@ -18,7 +19,7 @@ const GetGithubUser = () => {
     return (
         <form onSubmit={submitHandler}>
         <label htmlFor="text">Github Profile Search</label>
-        <input type="text" placeholder="Type.." id="searchText" ref={todoTextInputRef}/>
+        <input type="text" placeholder="Type.." id="searchText" ref={userTextInputRef}/>
         <button>Search</button>
         </form>
     ); 
