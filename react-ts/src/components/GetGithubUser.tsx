@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react"
 
-const GetGithubUser = () => {
+const GetGithubUser: React.FC<{onAddTodo: (text: string) => void}> = (props) => {
     const userTextInputRef = useRef<HTMLInputElement>(null);
 
     const submitHandler = (event: React.FormEvent) => {
@@ -14,6 +14,8 @@ const GetGithubUser = () => {
             // throw an error
             return;
         }
+
+        props.onAddTodo(enteredText);
     };
 
     return (
