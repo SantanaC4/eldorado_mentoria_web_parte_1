@@ -8,29 +8,14 @@ import GetGihubUser from './components/GetGithubUser';
 import useGetGithubRepo from './components/useGetGithubRepo';
 //import AxiosInReact from './components/AxiosInReact';
 import { APIResponse, Repository } from './types/types'
-import { get } from './fetchers/Fetchers'
 
 
 //const URL = "https://jsonplaceholder.typicode.com/posts/1";
 
 function App() {
-  //const people = useGetGithubRepo();
-  //const todos = [new Todo('Learn React'), new Todo('Learn TypeScript')];
+  const repositories = useGetGithubRepo('santanac4');
 
-  const [people, setpeople] = useState<Repository[]>([]);
-
-  useEffect(() => {
-    async function getData() {
-      const data = await get<APIResponse>('https://api.github.com/users/santanac4/repos');
-      setpeople(data);
-    }
-    //axios.get('https://api.github.com/users/santanac4/repos').then((response) => {
-    //console.log(response);
-
-    //setpeople(response?.data);
-    //})
-    getData();
-  },[]);
+  //if(repositories.length === 0) return null;
   
   const [todos, setTodos] = useState<Todo[]>([]);
 
@@ -47,11 +32,13 @@ function App() {
       <GetGihubUser onAddTodo={addTodoHandler}/>
       <Todos items={todos}/>
       <h1>Github Profile Search</h1>
-      {people.length 
+      {repositories.length 
         ? ( 
             <>
-                {people.map((person: Repository) => (
+                {repositories.map((person: Repository) => (
+                  <li key={person.id}>
                         <h1>{person.name}</h1>
+                  </li>
                 ))}
             </>
         )

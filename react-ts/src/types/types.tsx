@@ -1,11 +1,9 @@
 export interface Repository {
-    id?: any | null,
-    name: string,
-    description: string,
-    html_url: string,
-    forks?: number,
-    language: string
+    id: number;
+    name: string;
+    description: string;
+    html_url: string;
+    forks: number;
+    language: string;
 }
-export interface APIResponse {
-    results: Repository[], 
-}
+export type APIResponse = Repository[]; 
