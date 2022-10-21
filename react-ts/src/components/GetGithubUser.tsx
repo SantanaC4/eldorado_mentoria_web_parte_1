@@ -1,7 +1,8 @@
 import React from "react";
 import { useRef } from "react"
 
-const GetGithubUser: React.FC<{onAddTodo: (text: string) => void}> = (props) => {
+const GetGithubUser: React.FC<{onAddTodo: (text: string) => void; userNameHandler: (userName: string) => void}> = (
+    props) => {
     const userTextInputRef = useRef<HTMLInputElement>(null);
 
     const submitHandler = (event: React.FormEvent) => {
@@ -16,6 +17,7 @@ const GetGithubUser: React.FC<{onAddTodo: (text: string) => void}> = (props) => 
         }
 
         props.onAddTodo(enteredText);
+        props.userNameHandler(enteredText);
     };
 
     return (

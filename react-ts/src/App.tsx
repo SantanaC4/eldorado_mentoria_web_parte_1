@@ -1,22 +1,12 @@
-import { useState, useEffect } from 'react';
-import axios from "axios"
+import { useState } from 'react';
 import Todos from './components/Todos';
-import React from 'react'
 //import Routes from './Routes';
 import Todo from './models/todo'
 import GetGihubUser from './components/GetGithubUser';
-import useGetGithubRepo from './components/useGetGithubRepo';
-//import AxiosInReact from './components/AxiosInReact';
-import { APIResponse, Repository } from './types/types'
-
-
-//const URL = "https://jsonplaceholder.typicode.com/posts/1";
+import GetGithubRepo from './components/GetGithubRepo';
 
 function App() {
-  const repositories = useGetGithubRepo('santanac4');
-
-  //if(repositories.length === 0) return null;
-  
+  const [userName, setUserName] = useState('');
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodoHandler = (todoText: string) => {
@@ -27,22 +17,16 @@ function App() {
     });
   };
 
+  const userNameHandler = (userName: string) => {
+    setUserName(userName);  
+  };
+
   return (
     <div>
-      <GetGihubUser onAddTodo={addTodoHandler}/>
+      <GetGihubUser onAddTodo={addTodoHandler} userNameHandler={userNameHandler}/>
       <Todos items={todos}/>
+      {userName.length ? <GetGithubRepo userName={userName}/> : <p>Repositories not Found</p>}
       <h1>Github Profile Search</h1>
-      {repositories.length 
-        ? ( 
-            <>
-                {repositories.map((person: Repository) => (
-                  <li key={person.id}>
-                        <h1>{person.name}</h1>
-                  </li>
-                ))}
-            </>
-        )
-        : <div>Loading..</div>}
     </div>
   );
 }
