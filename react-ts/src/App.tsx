@@ -20,13 +20,18 @@ function App() {
   const userNameHandler = (userName: string) => {
     setUserName(userName);  
   };
+  
+  const removeTodoHandler = (todoId: string) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter(todo => todo.id !== todoId);
+    });
+  };
 
   return (
     <div>
       <GetGihubUser onAddTodo={addTodoHandler} userNameHandler={userNameHandler}/>
-      <Todos items={todos}/>
-      {userName.length ? <GetGithubRepo userName={userName}/> : <p>Repositories not Found</p>}
-      <h1>Github Profile Search</h1>
+      <Todos items={todos} onRemoveTodo={removeTodoHandler}/>
+      {userName.length ? <GetGithubRepo userName={userName}/> : <p>Found no User</p>}
     </div>
   );
 }
