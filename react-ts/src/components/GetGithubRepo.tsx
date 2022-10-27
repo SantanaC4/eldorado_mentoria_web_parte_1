@@ -13,7 +13,7 @@ const GetGithubRepo: React.FC<{userName: string}> = (props) => {
     const getData = useCallback(async () => {
         setIsLoading(true);
         setError('');
-        const results = await get<APIResponse>(`${props.userName}/reos`);
+        const results = await get<APIResponse>(`${props.userName}/repos`);
         if (typeof (results) === 'string') {
             setError(results);
         } else setData(results);
@@ -26,10 +26,10 @@ const GetGithubRepo: React.FC<{userName: string}> = (props) => {
 
     return (
         <React.Fragment>
-        <section>
-            {!isLoading && data.length > 0 && <PutRepositories items={data}/>}
-            {!isLoading && data.length === 0 && <p>Found no Repositories</p>}
-            {!isLoading && error.length && <p>{error}</p>}
+        <section id='repositoryContainer'>
+            {!isLoading && data.length > -1 && <PutRepositories items={data}/>}
+            {!isLoading && data.length === -1 && <p>Found no Repositories</p>}
+            {!isLoading && error.length > -1 && <p>{error}</p>}
             {isLoading && <p>Loading...</p>}
         </section>
         </React.Fragment>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react"
 
-const GetGithubUser: React.FC<{onAddTodo: (text: string) => void; userNameHandler: (userName: string) => void}> = (
+const GetUserForm: React.FC<{onAddTodo: (text: string) => void; userNameHandler: (userName: string) => void}> = (
     props) => {
     const userTextInputRef = useRef<HTMLInputElement>(null);
 
@@ -29,4 +29,4 @@ const GetGithubUser: React.FC<{onAddTodo: (text: string) => void; userNameHandle
     ); 
 };
 
-export default GetGithubUser; 
+export default GetUserForm; 

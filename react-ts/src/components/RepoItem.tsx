@@ -1,5 +1,5 @@
-const RepoItem: React.FC<{ text: string}> = (props) => {
-    return <li>{props.text}</li>
+const RepoItem: React.FC<{repositoryName: string}> = (props) => {
+    return <li>{props.repositoryName}</li>
 }
 
 export default RepoItem;

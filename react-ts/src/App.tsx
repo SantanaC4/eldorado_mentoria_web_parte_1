@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Todos from './components/Todos';
 //import Routes from './Routes';
 import Todo from './models/todo'
-import GetGihubUser from './components/GetGithubUser';
+import GetUserForm from './components/GetUserForm';
 import GetGithubRepo from './components/GetGithubRepo';
+import GetUserInformation from './components/GetUserInformation';
 
 function App() {
   const [userName, setUserName] = useState('');
@@ -28,11 +29,12 @@ function App() {
   };
 
   return (
-    <div>
-      <GetGihubUser onAddTodo={addTodoHandler} userNameHandler={userNameHandler}/>
+    <main>
+      <GetUserForm onAddTodo={addTodoHandler} userNameHandler={userNameHandler}/>
       <Todos items={todos} onRemoveTodo={removeTodoHandler}/>
+      {userName.length ? <GetUserInformation userName={userName}/> : <p>Found no User</p>}
       {userName.length ? <GetGithubRepo userName={userName}/> : <p>Found no User</p>}
-    </div>
+    </main>
   );
 }
 
