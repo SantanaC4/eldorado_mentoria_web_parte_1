@@ -5,6 +5,7 @@ import Todo from './models/todo'
 import GetUserForm from './components/GetUserForm';
 import GetGithubRepo from './components/GetGithubRepo';
 import GetUserInformation from './components/GetUserInformation';
+import Header from './components/Header';
 
 function App() {
   const [userName, setUserName] = useState('');
@@ -29,12 +30,13 @@ function App() {
   };
 
   return (
-    <main>
+      <>      
+      <Header userNameHandler={userNameHandler}/>
       <GetUserForm onAddTodo={addTodoHandler} userNameHandler={userNameHandler}/>
       <Todos items={todos} onRemoveTodo={removeTodoHandler}/>
       {userName.length ? <GetUserInformation userName={userName}/> : <p>Found no User</p>}
       {userName.length ? <GetGithubRepo userName={userName}/> : <p>Found no User</p>}
-    </main>
+      </>
   );
 }
 
