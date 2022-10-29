@@ -13,5 +13,6 @@ export type User = {
     avatar_url: string;
     followers: string;
     location: string;
+    bio: string;
 }
 export type APIResponse = Repository[]; 
