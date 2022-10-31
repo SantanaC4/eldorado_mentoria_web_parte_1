@@ -29,7 +29,7 @@ const GetUserInformation: React.FC<{userName: string}> = (props) => {
 
     useEffect(() => {
         fetchData(`${props.userName}`);
-    }, [props.userName]);
+    }, [props.userName, fetchData]);
 
     return (
         <div className="mb-3">
