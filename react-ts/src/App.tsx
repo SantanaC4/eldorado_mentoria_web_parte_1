@@ -1,41 +1,47 @@
-import { useState } from 'react';
-import Todos from './components/Todos';
-import Todo from './models/todo'
-import GetUserForm from './components/GetUserForm';
-import GetGithubRepo from './components/GetGithubRepo';
+import { useState, useEffect } from 'react';
 import GetUserInformation from './components/GetUserInformation';
+import { useAxiosFetch } from './fetchers/useAxiosFetch';
 import {Container, Row, Col} from 'react-bootstrap';
 import Header from './components/Header';
 import RepositoryList from './components/RepositoryList';
-import { APIResponse, Repository, User } from './models/types'
+import { Repository} from './models/types'
 
 function App() {
   const [reposList, setReposList] = useState<Repository[]>([]);
   const [userName, setUserName] = useState<string>('');
-  const [todos, setTodos] = useState<Todo[]>([]);
 
-  const addTodoHandler = (todoText: string) => {
-    const newTodo = new Todo(todoText);
-
-    setTodos((prevTodos) => {
-      return prevTodos.concat(newTodo);
-    });
-  };
+  const [ data, error, loading, fetchData] = useAxiosFetch();
 
   const userNameHandler = (userName: string) => {
     setUserName(userName);  
   };
   
-  const removeTodoHandler = (todoId: string) => {
-    setTodos((prevTodos) => {
-      return prevTodos.filter(todo => todo.id !== todoId);
-    });
-  };
+  useEffect(() => {
+    console.log(data);
+      if (data) {
+          setReposList(data);
+      } else {
+          setReposList([]);
+      }
+  }, [data]);
 
-  // <GetUserForm onAddTodo={addTodoHandler} userNameHandler={userNameHandler}/>
-  // <Todos items={todos} onRemoveTodo={removeTodoHandler}/>
-  // {userName.length ? <GetUserInformation userName={userName}/> : <p>Found no User</p>}
-  // {userName.length ? <GetGithubRepo userName={userName}/> : <p>Found no User</p>}
+  useEffect(() => {
+      if (error) {
+          console.log(error);
+      }
+  }, [error]);
+
+  useEffect(() => {
+      if (loading) {
+          console.log("Retrieving data");
+      }
+  }, [loading]);
+
+  useEffect(() => {
+    if (userName) {
+      fetchData(`${userName}/repos`);
+    }
+  }, [userName]);
 
   return (
       <>      
@@ -43,7 +49,7 @@ function App() {
         <Container className="mt-5">
           <Row>
               <Col>
-                  {userName.length ? <GetUserInformation userName={userName}/> : <p>Found no User</p>}
+                  {userName.length ? <GetUserInformation userName={userName}/> : <p className="mt-5">Found no User</p>}
               </Col>
               <Col>
                   <RepositoryList repositories={reposList}/>

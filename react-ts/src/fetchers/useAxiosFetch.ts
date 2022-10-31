@@ -18,7 +18,6 @@ export const useAxiosFetch = () => {
             } else {
                 setError(error);
             }
-
             setLoading(false);
         } finally {
             setLoading(false);
