@@ -8,11 +8,12 @@ export interface Repository {
 }
 export type User = {
     id: number;
+    public_repos: number;
     login: string,
     name: string;
     avatar_url: string;
-    followers: string;
-    location: string;
+    followers?: string;
+    location?: string;
     bio: string;
 }
 export type APIResponse = Repository[]; 

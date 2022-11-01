@@ -5,6 +5,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 import Header from './components/Header';
 import RepositoryList from './components/RepositoryList';
 import { Repository} from './models/types'
+import { setDefaultResultOrder } from 'dns/promises';
 
 function App() {
   const [reposList, setReposList] = useState<Repository[]>([]);
@@ -28,6 +29,9 @@ function App() {
   useEffect(() => {
       if (error) {
           console.log(error);
+          setReposList([{id: 0, name: 'Error: Try another user' ,
+            description: `${error}`, html_url: '', forks: 0, language: 'ERROR'
+        }]);
       }
   }, [error]);
 
@@ -41,7 +45,7 @@ function App() {
     if (userName) {
       fetchData(`${userName}/repos`);
     }
-  }, [userName]);
+  }, [userName, fetchData]);
 
   return (
       <>      

@@ -11,6 +11,7 @@ export const useAxiosFetch = () => {
     const fetchData = useCallback(async (url: string): Promise<void> => {
         try {
             const response = await axios.get<any>(url);
+            setError(null);
             setData(response.data);
         } catch (error) {
             if (axios.isAxiosError(error)) {
