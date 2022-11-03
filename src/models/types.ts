@@ -13,7 +13,7 @@ export type User = {
     name: string;
     avatar_url: string;
     followers?: string;
-    location?: string;
+    company?: string;
     bio: string;
 }
 export type APIResponse = Repository[]; 

@@ -10,8 +10,9 @@ const UserItem: React.FC<{item: User}> = (props) => {
                         <Card.Subtitle className="text-muted">{props.item.login}</Card.Subtitle>
                         <Card.Text>{props.item.bio}</Card.Text>
                         <ListGroup>
-                            <ListGroup.Item>Repositories {props.item.public_repos}</ListGroup.Item>
-                            <ListGroup.Item>Followers {props.item.public_repos}</ListGroup.Item>
+                            <ListGroup.Item>Repositories: {props.item.public_repos}</ListGroup.Item>
+                            <ListGroup.Item>Followers: {props.item.public_repos}</ListGroup.Item>
+                            <ListGroup.Item>Company: {props.item.company}</ListGroup.Item>
                         </ListGroup>
                     </Card.Body>
                 </Card>

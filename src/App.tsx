@@ -5,16 +5,21 @@ import {Container, Row, Col} from 'react-bootstrap';
 import Header from './components/Header';
 import RepositoryList from './components/RepositoryList';
 import { Repository} from './models/types'
-import { setDefaultResultOrder } from 'dns/promises';
 
 function App() {
   const [reposList, setReposList] = useState<Repository[]>([]);
   const [userName, setUserName] = useState<string>('');
-
-  const [ data, error, loading, fetchData] = useAxiosFetch();
+  const [data, error, loading, fetchData] = useAxiosFetch();
 
   const userNameHandler = (userName: string) => {
     setUserName(userName);  
+  };
+
+  const cleanButtonHandler = (cleanButton: boolean) => {
+    if (cleanButton) {
+      setReposList([]); 
+      setUserName('');
+    };
   };
   
   useEffect(() => {
@@ -49,7 +54,7 @@ function App() {
 
   return (
       <>      
-        <Header userNameHandler={userNameHandler}/>
+        <Header userNameHandler={userNameHandler} cleanButtonHandler={cleanButtonHandler} />
         <Container className="mt-5">
           <Row>
               <Col>
