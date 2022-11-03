@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { User } from "../models/types"
-import { useAxiosFetch } from "../fetchers/useAxiosFetch";
+import { useAxiosFetch } from "../hook/useAxiosFetch";
 import UserItem from "./UserItem"
 import ImageImport from "./userNotFound.png";
 

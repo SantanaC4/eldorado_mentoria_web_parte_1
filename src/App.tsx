@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import GetUserInformation from './components/GetUserInformation';
-import { useAxiosFetch } from './fetchers/useAxiosFetch';
+import { useAxiosFetch } from './hook/useAxiosFetch';
 import {Container, Row, Col} from 'react-bootstrap';
 import Header from './components/Header';
 import RepositoryList from './components/RepositoryList';
